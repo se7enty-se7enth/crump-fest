@@ -416,9 +416,11 @@ a:hover {
   color: #fff;
   margin: 0 auto;
   background: url(../img/FrstVidPrew.png) center/contain no-repeat;
+  opacity: 0.8;
 }
 .video__info {
   z-index: 2;
+  padding: 40px;
 }
 .video__info h2 {
   font-size: 28px;

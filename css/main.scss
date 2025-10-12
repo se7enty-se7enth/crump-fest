@@ -222,10 +222,12 @@ a {
         color: #fff;
         margin: 0 auto;
         background: url(../img/FrstVidPrew.png) center/contain no-repeat;
+        opacity: 0.8;
     }
 
     &__info {
         z-index: 2;
+        padding: 40px;
 
         h2 {
             font-size: 28px;
