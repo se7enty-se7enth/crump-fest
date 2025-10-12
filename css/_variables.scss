@@ -1,0 +1,32 @@
+:root {
+    --color-light: #fff;
+    --color-dark: #000;
+    --color-accent: #8870AF;
+
+    --input-height: 56px;
+
+    --main-font: "ibmplexsans", sans-serif;
+    --font-size-h2: 42px;
+
+    --container-width: 1200px;
+    --container-padding-x: 20px;
+
+    --section-padding-y: 50px;
+}
+
+$transition-duration: 0.2s;
+
+$border-radius-card: 5px;
+$border-radius-input: 7px;
+
+$breakpoints: (
+    sm: 576px,
+    // телефоны
+    md: 768px,
+    // маленькие планшеты
+    lg: 1024px,
+    // планшеты/ноуты
+    xl: 1280px,
+    // стандартные десктопы
+    xxl: 1440px // широкие мониторы
+);

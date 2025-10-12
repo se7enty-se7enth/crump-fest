@@ -1,0 +1,207 @@
+@use "normalize";
+@use "reset";
+@use "fonts";
+@use "utils";
+@use "variables" as v;
+@use "mixins" as m;
+
+body {
+    font-family: var(--main-font);
+    background-color: var(--color-dark);
+}
+
+a {
+    display: inline-flex;
+    height: 44px;
+    align-items: center;
+    color: var(--color-light);
+    opacity: 0.9;
+    transition-duration: v.$transition-duration;
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.header {
+    @include m.flex(row, space-between, center, 25px);
+    padding: 32px 40px 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    .burger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 42px;
+        height: 32px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 101;
+
+        span {
+            height: 5px;
+            width: 100%;
+            border-radius: 2px;
+            background-color: var(--color-light);
+            transition: all 0.3s ease;
+        }
+
+        &.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(19px);
+        }
+
+        &.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        &.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-19px);
+        }
+    }
+
+    .header__nav {
+        position: fixed;
+        top: 0;
+        left: -0;
+        width: 300px;
+        height: 100vh;
+        background-color: #111111;
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+        z-index: 100;
+        padding-top: 100px;
+        text-transform: uppercase;
+        font-size: 21px;
+        text-align: center;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            padding-left: 30px;
+            gap: 15px;
+        }
+
+        li a {
+            color: var(--color-light);
+        }
+
+        &.active {
+            transform: translateX(0);
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        z-index: 99;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &__logo {
+        width: 100%;
+        max-width: 100px;
+        height: 100%;
+    }
+
+    &__society {
+        display: flex;
+        gap: 15px;
+    }
+}
+
+.welcome__screen {
+    position: relative;
+    height: 100vh;
+    background: url("../img/firstScr.png") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -120px;
+    color: var(--color-light);
+
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(0, 0, 0, 0.5));
+        z-index: 0;
+    }
+
+    .container {
+        z-index: 1;
+        @include m.flex(row, space-around, center, 25px);
+        width: 100%;
+    }
+
+    .welcome__inner {
+        @include m.flex(column, center, start, 25px);
+    }
+
+    .welcome__title h1 {
+        font-size: 62px;
+        font-weight: 600;
+    }
+
+    .welcome__description {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .welcome__link {
+        font-size: 20px;
+
+        &::after {
+            content: "→";
+            padding-left: 10px;
+            transition-duration: v.$transition-duration;
+        }
+
+        &:hover::after {
+            padding-left: 15px;
+        }
+    }
+
+    .welcome__local__date {
+        @include m.flex(column, center, center, 70px);
+        font-size: 18px;
+
+        time {
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 45px;
+                aspect-ratio: 1;
+                background: url(../icons/calendar_paper.svg) center/contain no-repeat;
+                position: absolute;
+                top: -50%;
+                left: -70px;
+            }
+        }
+
+        .welcome__location {
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 45px;
+                aspect-ratio: 1;
+                background: url(../icons/marker_location_place_where.svg) center/contain no-repeat;
+                position: absolute;
+                top: -50%;
+                left: -70px;
+            }
+        }
+    }
+}
