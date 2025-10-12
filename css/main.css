@@ -413,8 +413,8 @@ a:hover {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 40px;
   color: #fff;
+  margin: 0 auto;
   background: url(../img/FrstVidPrew.png) center/contain no-repeat;
 }
 .video__info {
