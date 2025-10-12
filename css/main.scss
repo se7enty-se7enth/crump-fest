@@ -205,3 +205,83 @@ a {
         }
     }
 }
+
+.video {
+    position: relative;
+    height: 500px; // можешь подогнать под макет
+
+    &__wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 40px;
+        color: #fff;
+    }
+
+    &__info {
+        z-index: 2;
+
+        h2 {
+            font-size: 28px;
+            margin: 0 0 8px;
+        }
+
+        p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+    }
+
+    &__play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9) url('../icons/play.svg') center/40% no-repeat;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+
+        &:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 0.9;
+        }
+    }
+
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+
+        &.active {
+            display: flex;
+        }
+    }
+
+    &__popup {
+        position: relative;
+        width: 80%;
+        max-width: 900px;
+        aspect-ratio: 16 / 9;
+        background: #000;
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    }
+}

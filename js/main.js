@@ -37,3 +37,16 @@ document.addEventListener("click", (e) => {
     closeMenu();
   }
 });
+
+const videoWrapper = document.querySelector(".video__wrapper");
+const videoOverlay = document.querySelector(".video__overlay");
+
+videoWrapper.addEventListener("click", () => {
+  overlay.classList.add("active");
+});
+
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) {
+    overlay.classList.remove("active");
+  }
+});
