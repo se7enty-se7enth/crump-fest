@@ -416,6 +416,7 @@ a:hover {
   justify-content: flex-start;
   padding: 40px;
   color: #fff;
+  background: url(../img/FrstVidPrew.png);
 }
 .video__info {
   z-index: 2;
