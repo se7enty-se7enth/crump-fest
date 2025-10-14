@@ -108,7 +108,7 @@ svg * {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
-  line-height: 1.15;
+  line-height: 1.5;
 }
 
 button,
@@ -207,12 +207,13 @@ h2 {
   --font-size-h2: 42px;
   --container-width: 1200px;
   --container-padding-x: 20px;
-  --section-padding-y: 50px;
+  --gradient: linear-gradient(0turn, rgba(255, 154, 139, 1) 0%, rgba(97, 72, 170, 1) 100%);
 }
 
 body {
   font-family: var(--main-font);
   background-color: var(--color-dark);
+  color: var(--color-light);
 }
 
 a {
@@ -227,16 +228,35 @@ a:hover {
   opacity: 1;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 25px;
-  padding: 32px 40px 0 40px;
+  padding: 16px 40px;
   position: sticky;
   top: 0;
   z-index: 10;
+  background: transparent;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.8));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.header.scrolled::before {
+  opacity: 1;
 }
 .header .burger {
   display: flex;
@@ -286,9 +306,6 @@ a:hover {
   padding-left: 30px;
   gap: 15px;
 }
-.header .header__nav li a {
-  color: var(--color-light);
-}
 .header .header__nav.active {
   transform: translateX(0);
 }
@@ -323,7 +340,9 @@ a:hover {
   align-items: center;
   justify-content: center;
   margin-top: -120px;
-  color: var(--color-light);
+  background-attachment: scroll;
+  overflow: hidden;
+  will-change: background-position;
 }
 .welcome__screen::before {
   content: "";
@@ -402,6 +421,7 @@ a:hover {
 
 .video {
   position: relative;
+  filter: brightness(0.8);
 }
 .video__wrapper {
   position: relative;
@@ -413,22 +433,24 @@ a:hover {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  color: #fff;
   margin: 0 auto;
   background: url(../img/FrstVidPrew.png) center/contain no-repeat;
-  opacity: 0.8;
+  filter: brightness(1);
 }
 .video__info {
-  z-index: 2;
   padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+  filter: brightness(1);
 }
 .video__info h2 {
-  font-size: 28px;
-  margin: 0 0 8px;
+  font-size: 24px;
 }
 .video__info p {
-  font-size: 16px;
-  opacity: 0.8;
+  font-size: 14px;
 }
 .video__play {
   position: absolute;
@@ -441,9 +463,656 @@ a:hover {
   background: rgba(255, 255, 255, 0.9) url("../icons/play.svg") center/40% no-repeat;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: all 0.2s;
 }
 .video__play:hover {
   transform: translate(-50%, -50%) scale(1.1);
+}
+
+.invite__festival {
+  padding-block: 10px 70px;
+}
+.invite__festival .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 25px;
+}
+.invite__festival .invite__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 50px;
+}
+.invite__festival .invite__info p {
+  color: #fcf75c;
+  line-height: 1.5;
+}
+.invite__festival .perfomance__item {
+  line-height: 1.5;
+}
+
+.gallery {
+  padding-bottom: 50px;
+}
+.gallery .gallery__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 15px;
+}
+.gallery .gallery__list .gallery__item {
+  width: 100%;
+  max-width: 282px;
+}
+
+.schedule__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  gap: 40px;
+  margin-top: 30px;
+}
+.schedule__list .schedule__item {
+  width: clamp(150px, 360px, 30vw);
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  font-size: 18px;
+  font-weight: 600;
+}
+.schedule__list .schedule__item .schedule__time {
+  font-size: 24px;
+  font-weight: 600;
+  background: #5c5c5c;
+  padding: 20px 30px;
+  color: var(--color-light);
+}
+.schedule__list .schedule__item .schedule__events {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 70px;
+  padding: 40px 30px;
+}
+.schedule__list .schedule__item .schedule__events .schedule__event {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 25px;
+}
+.schedule__list .schedule__item .schedule__events .schedule__event__title h3 {
+  font-size: 18px;
+}
+.schedule__list .schedule__item .schedule__event__description {
+  font-size: 16px;
+  font-weight: 300;
+}
+.schedule__list .schedule__item .schedule__event__description strong {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.crump__clips .video {
+  position: relative;
+  height: 500px;
+}
+.crump__clips .video__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 40px;
+  color: #fff;
+  overflow: hidden;
+}
+.crump__clips .video__info {
+  z-index: 2;
+}
+.crump__clips .video__info h2 {
+  font-size: 28px;
+  margin: 0 0 8px;
+}
+.crump__clips .video__info p {
+  font-size: 16px;
+  opacity: 0.8;
+}
+.crump__clips .video__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9) url("../icons/play.svg") center/40% no-repeat;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.crump__clips .video__play:hover {
+  transform: translate(-50%, -50%) scale(1.1);
   opacity: 0.9;
+}
+
+.crump__clips {
+  padding: 80px 0;
+}
+.crump__clips .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+.crump__clips .clip {
+  position: relative;
+  margin: 0 auto;
+  width: 560px;
+  height: 315px;
+}
+.crump__clips .clip__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: url(../img/crumpClips1.jpg) center/cover no-repeat;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+}
+.crump__clips .clip .second__clip {
+  background: url(../img/crumpClips2.jpg) center/cover no-repeat;
+}
+.crump__clips .clip__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9) url("../icons/play.svg") center/40% no-repeat;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.9;
+}
+.crump__clips .clip__play:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 1;
+}
+
+.registration {
+  position: relative;
+  height: 100%;
+  background: url("../img/formBgk.png") center/cover no-repeat;
+  padding: 85px 25px;
+}
+.registration::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(41, 34, 28, 0.7);
+  z-index: 0;
+  pointer-events: none;
+}
+.registration .container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  gap: 45px;
+}
+.registration__header h2 {
+  text-transform: uppercase;
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+.registration__header p {
+  max-width: 380px;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0 auto;
+  text-align: center;
+}
+.registration__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+}
+.registration__form legend,
+.registration__form .registration__select label {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+.registration__form input[type=text],
+.registration__form [type=tel] {
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  height: 56px;
+  padding-inline: 20px;
+  width: clamp(250px, 30vw, 560px);
+}
+.registration__form input[type=text]:focus,
+.registration__form [type=tel]:focus {
+  box-shadow: inset 1px 1px 2px 1px var(--color-dark);
+}
+.registration__form .registration__input.checkbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+  font-weight: 300;
+  font-size: 15px;
+}
+.registration__form input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 20px;
+  aspect-ratio: 1;
+  border: 2px solid #a5a4a2;
+  cursor: pointer;
+  position: relative;
+  transition-duration: 0.2s;
+}
+.registration__form input[type=checkbox]:checked {
+  background: transparent;
+  border: 2px solid var(--color-light);
+}
+.registration__form input[type=checkbox]:checked::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--color-light);
+}
+.registration__form .registration__select_inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.registration__form .registration__select_inner .select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: clamp(250px, 30vw, 560px);
+}
+.registration__form .registration__select_inner .select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  width: 22px;
+  aspect-ratio: 1;
+  background: url("../icons/arrow-down.svg") center/contain no-repeat;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.registration__form .registration__select_inner .select-wrapper.open::after {
+  transform: translateY(-50%) rotate(0deg);
+}
+.registration__form .registration__select_inner select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 7px;
+  height: 56px;
+  padding-inline: 15px 45px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  background: transparent;
+  color: var(--color-light);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.registration__form .registration__select_inner select:focus {
+  outline: none;
+}
+.registration__form .registration__select_inner select::-ms-expand {
+  display: none;
+}
+.registration__form .registration__select_inner option {
+  background-color: rgb(41, 34, 28);
+  color: var(--color-light);
+}
+.registration .registration__button {
+  height: 56px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-light);
+  border: 2px solid var(--color-light);
+  border-radius: 7px;
+  background-image: var(--gradient);
+  cursor: pointer;
+}
+.registration .personal_data {
+  text-align: center;
+}
+
+.tickets {
+  padding-bottom: 45px;
+}
+.tickets__title h2 {
+  font-size: 42px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.tickets .fullpack__description {
+  font-size: 18px;
+  font-weight: 300;
+  max-width: 550px;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.tickets__members {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.tickets .ticket__member {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  background-color: #6e5893;
+  padding: 45px 30px;
+  border: 7px solid var(--color-light);
+  border-radius: 9px;
+  width: 100%;
+  height: 100%;
+}
+.tickets .ticket__member__logo {
+  width: 100%;
+  max-width: 100px;
+}
+.tickets .ticket__member__title {
+  font-size: 22px;
+  font-weight: 600;
+}
+.tickets .ticket__member__title--day {
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 600;
+  text-align: center;
+  max-width: 250px;
+}
+.tickets .ticket__member__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 25px;
+  text-align: center;
+  flex-grow: 1;
+}
+.tickets .ticket__member__description span {
+  font-weight: 600;
+}
+.tickets .ticket__member .ticket__registration__link {
+  height: 50px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-light);
+  border: 2px solid var(--color-light);
+  border-radius: 65px;
+  background-image: var(--gradient);
+  cursor: pointer;
+  padding: 12.5px 44px;
+  align-self: center;
+}
+.tickets .fullpack {
+  max-width: 370px;
+  margin: 0 auto;
+}
+.tickets__payment__links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.tickets__payment__links .tickets__payment__link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  height: 60px;
+  background: var(--gradient);
+  border: 2px solid var(--color-light);
+  color: var(--color-light);
+  border-radius: 65px;
+  padding: 12px;
+  width: clamp(200px, 20vw, 360px);
+}
+.tickets__payment__links .tickets__payment__link::before {
+  position: absolute;
+  content: "";
+  left: 25px;
+  top: 50%;
+  width: 20px;
+  aspect-ratio: 1;
+  background: url("../icons/lightning.svg") center/contain no-repeat;
+  transform: translate(-50%, -50%);
+}
+.tickets__payment__links .tickets__payment__link::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: 25px;
+  width: 10px;
+  height: 18px;
+  background: url(../icons/arrow-right.svg) center/contain no-repeat;
+  transition-duration: 0.2s;
+}
+.tickets__payment__links .tickets__payment__link:hover::after {
+  right: 20px;
+}
+
+.venues {
+  padding-bottom: 15px;
+}
+.venues__title h2 {
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.venues__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  grid-auto-rows: 1fr;
+}
+.venues__item a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+}
+.venues__item a .venue__inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 25px 30px;
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  flex-grow: 1;
+}
+.venues__item a .venue__inner .venue__title {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.venues__item a .venue__inner .venue__addres {
+  font-size: 14px;
+  font-weight: 300;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+.venues__item a .venue__inner .venue__button {
+  color: var(--color-light);
+  padding: 6.5px 15px;
+  border-radius: 10px;
+  background: var(--gradient);
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid var(--color-light);
+  box-shadow: 1px 1px 8px 1px var(--color-dark);
+  transition-duration: 0.2s;
+}
+.venues__item a .venue__inner:hover .venue__button {
+  box-shadow: 2px 2px 12px 2px var(--color-dark);
+}
+
+.piter__screen {
+  position: relative;
+  height: 100vh;
+  background: url("../img/beautifulpiternah.png") center/cover no-repeat;
+  background-attachment: scroll;
+  will-change: background-position;
+  overflow: hidden;
+}
+.piter__screen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  z-index: 0;
+}
+
+.yandex__map {
+  padding-block: 45px;
+}
+.yandex__map .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 25px;
+}
+.yandex__map .connection__inner {
+  width: 100%;
+  max-width: 400px;
+}
+.yandex__map .connection__inner p {
+  font-size: 20px;
+  font-weight: 600;
+}
+.yandex__map .connection__title h2 {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.yandex__map .connection__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.yandex__map .telegram__links {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: center;
+  gap: 10px;
+}
+.yandex__map .telegram__links a {
+  height: auto;
+}
+
+.merch .merch__bkg {
+  position: relative;
+  height: 50vh;
+  background: url("../img/merch.png") center/cover no-repeat;
+  overflow: hidden;
+  background-position: 0 -590px;
+}
+.merch .merch__bkg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.35));
+  z-index: 0;
+}
+.merch .merch__bkg .merch__titles {
+  position: absolute;
+  top: -10%;
+  left: 13%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.merch .merch__bkg .merch__titles span {
+  font-size: clamp(40px, 15vw, 150px);
+  font-weight: 800;
+  color: var(--color-light);
+  opacity: 0.6;
+  text-transform: uppercase;
+  line-height: 0.8;
+}
+.merch__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  text-align: center;
+  padding-block: 25px;
+}
+.merch__description .merch__title {
+  font-size: 34px;
 }/*# sourceMappingURL=main.css.map */

@@ -11,13 +11,14 @@
     --container-width: 1200px;
     --container-padding-x: 20px;
 
-    --section-padding-y: 50px;
+    --gradient: linear-gradient(0turn, rgba(255, 154, 139, 1) 0%, rgba(97, 72, 170, 1) 100%);
 }
 
 $transition-duration: 0.2s;
 
 $border-radius-card: 5px;
 $border-radius-input: 7px;
+$input-height: 56px;
 
 $breakpoints: (
     sm: 576px,
